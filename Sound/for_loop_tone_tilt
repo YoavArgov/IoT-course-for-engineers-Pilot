@@ -1,0 +1,50 @@
+
+
+  int joyPin1 = 0;                 
+ int joyPin2 = 1;                 
+ 
+int  value1=0; 
+int  value2=0; 
+int  value3 = 0;     // variable for reading the pin status
+
+ int pitch=0;
+ int low = 120;                
+ int high = 1500;                  
+ int jump = 10;
+int duration=10;
+
+ void setup() { 
+     pinMode(13, OUTPUT);  // declare LED as output
+     pinMode(2, INPUT);    // declare tilt sensor as input
+ }
+
+ void loop() {
+   
+    value1 = analogRead(joyPin1);   
+    delay(10);             
+    value2 = analogRead(joyPin2);   
+     delay(10);             
+
+    //******************************************
+
+  //duration = map(value1, 0, 1023, 5, 20);     
+  //jump = map(value2, 0, 1023, 4, 30);     
+  //low = map(value1, 0, 1023, 120, 700);     
+  //high = map(value2, 0, 1023, 710, 1500 );     
+    //******************************************
+value3 = digitalRead(2);  // read input value
+      if (value3 == LOW) 
+      {         
+               for(pitch = low; pitch < high; pitch += jump) 
+               {  
+                  tone(9, pitch, duration);     
+               }
+            
+               for(pitch = high; pitch > low; pitch -= jump) 
+               {  
+                  tone(9, pitch, duration);     
+               }
+                
+                delay(1000);
+      }
+ }
