@@ -1,0 +1,31 @@
+
+#include <Servo.h> 
+ 
+ Servo myservo;  // create servo object to control a servo
+ 
+ int joyPin1 = 0;                 // slider variable connecetd to analog pin 0
+ int joyPin2 = 1;                 // slider variable connecetd to analog pin 1
+ int value1 = 0;                  // variable to read the value from the analog pin 0
+ int value2 = 0;                  // variable to read the value from the analog pin 1
+
+ void setup() {
+  Serial.begin(9600); 
+    myservo.attach(9);  
+
+ }
+
+ void loop() {
+  
+  value1 = analogRead(joyPin1);   
+  delay(50);             
+
+value2 = analogRead(joyPin2);   
+  Serial.print(" J1 ");
+  Serial.print(value1);
+  Serial.print(" J2 ");
+  Serial.println(value2);
+  
+  value1 = map(value1, 0, 1023, 0, 179);    
+  myservo.write(value1);                  
+  delay(15);                           
+ }
