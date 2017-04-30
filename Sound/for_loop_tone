@@ -1,0 +1,44 @@
+
+
+  int joyPin1 = 0;                 //הגדרת כניסה גויסטיק1
+ int joyPin2 = 1;                 //הגדרת כניסה גויסטיק2
+ 
+int  value1=0; //משתנה לקלט מגויסטיק1
+int  value2=0; //משתנה לקלט מגויסטיק2
+
+ int pitch=0;
+ int low = 120;                
+ int high = 1500;                  
+ int jump = 10;
+int duration=10;
+
+ void setup() { 
+ }
+
+ void loop() {
+   
+    value1 = analogRead(joyPin1);   
+    delay(10);             
+    value2 = analogRead(joyPin2);   
+    
+    //******************************************
+
+  //duration = map(value1, 0, 1023, 5, 20);     
+  //jump = map(value2, 0, 1023, 4, 30);     
+  //low = map(value1, 0, 1023, 120, 700);     
+  //high = map(value2, 0, 1023, 710, 1500 );     
+    //******************************************
+
+   for(pitch = low; pitch < high; pitch += jump) 
+   { 
+      tone(9, pitch, duration);     
+   }
+
+   for(pitch = high; pitch > low; pitch -= jump) 
+   {  
+      tone(9, pitch, duration);     
+   }
+    
+    delay(1000);
+    
+ }
