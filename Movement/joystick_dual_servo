@@ -1,0 +1,37 @@
+
+#include <Servo.h> 
+ 
+ Servo myservo1;  // create servo object to control a servo
+  Servo myservo2;  // create servo object to control a servo
+
+
+ int joyPin1 = 0;                 // slider variable connecetd to analog pin 0
+ int joyPin2 = 1;                 // slider variable connecetd to analog pin 1
+ int value1 = 0;                  // variable to read the value from the analog pin 0
+ int value2 = 0;                  // variable to read the value from the analog pin 1
+
+ void setup() {
+    myservo1.attach(9);  
+    myservo2.attach(10);  
+
+ }
+
+ void loop() {
+   
+  value1 = analogRead(joyPin1);   
+  delay(50);             
+  value2 = analogRead(joyPin2);   
+  
+  //***********************************************
+  
+  value1 = map(value1, 0, 1023, 0, 179);     
+  value2 = map(value2, 0, 1023, 0, 179);     
+  
+  //***********************************************
+  
+  myservo1.write(value1);                  
+  myservo2.write(value2);               
+  delay(15);                           
+  
+ } 
+ 
