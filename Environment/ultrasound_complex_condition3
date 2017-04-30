@@ -1,0 +1,43 @@
+#include "Ultrasonic.h"
+Ultrasonic ultrasonic(6,7);
+int flag=0;
+int newflag=0;
+int distance=0;
+
+void setup() {
+pinMode(13, OUTPUT);
+pinMode(12, OUTPUT);
+pinMode(11, OUTPUT);
+pinMode(8, OUTPUT);
+}
+
+void loop()
+{
+  distance=ultrasonic.Ranging(CM);
+  delay(100);
+  if (distance<10)  
+  {
+   flag++;
+   digitalWrite(12,HIGH);
+  }
+  
+  if (flag>=30)  
+  {
+       digitalWrite(11,HIGH);
+       digitalWrite(12,LOW);
+  } 
+  
+  if (distance<=30 && distance>=20)  
+  {
+      digitalWrite(12,HIGH);
+       digitalWrite(11,LOW);
+       if (flag>=30) newflag++;
+  } 
+  
+  if (newflag>30) 
+  {
+  digitalWrite(13,HIGH);
+  digitalWrite(8,HIGH);
+
+  }
+}
